@@ -43,7 +43,8 @@ if __name__ == "__main__":
     if not isdir(save_dir):
         mkdir(save_dir)
 
-    with open(join("methods_config",f"{method_name.replace(".","")}.yaml"), "r") as f_cfg:
+    name_no_dot = method_name.replace(".","")
+    with open(join("methods_config",f"{name_no_dot}.yaml"), "r") as f_cfg:
         method_cfg = yaml.safe_load(f_cfg)
 
     if verbose: print(f"Setting up the --{method_name}-- model.")
