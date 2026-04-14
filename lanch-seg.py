@@ -24,7 +24,7 @@ if __name__ == "__main__":
     output_dir = args.output
     method_name = args.method
 
-    assert method_name in METHODS_AVAILABLE, "Unknown method"
+    assert method_name in METHODS_AVAILABLE, f"{method_name} is an unknown method\nknown methods are {METHODS_AVAILABLE}"
 
     save_dir = join(output_dir, method_name)
     if not isdir(save_dir):
@@ -45,6 +45,9 @@ if __name__ == "__main__":
             mask = method.segment()
         
         imwrite(join(save_dir, basename(img_f)), mask)
+
+    with open(join(save_dir, "config.yaml"), "a") as f_cfg:
+        yaml.dump(method_cfg, f_cfg, default_flow_style=False)
 
     with open(join(save_dir, "time.txt"), "a") as f_time:
         print(f"Mean time per file: {round(Timer.elapsed_time(), 4)}",file=f_time)
