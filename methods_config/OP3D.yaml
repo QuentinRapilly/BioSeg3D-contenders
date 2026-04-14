@@ -1,0 +1,22 @@
+model:
+  pretrained_model: "to_fill"
+  dim: 3
+  nclasses: 2 # flow + dist 
+  nchan: 1
+  diam_mean: 0
+
+parameters: 
+  mask_threshold: -2 #usually this is -1 # Les trois premiers parametres sont les plus importants a modifier pour changer le comportement de la segmentation 
+  flow_threshold: 0.
+  diam_threshold: 15
+  net_avg: false
+  cluster: false
+  verbose: 1
+  tile: false
+  channels: null
+  compute_masks: 1
+  resample: false
+  rescale: null
+  omni: true
+  flow_factor: 10 # multiple to increase flow magnitude, useful in 3D
+  transparency: True

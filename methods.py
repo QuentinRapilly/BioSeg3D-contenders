@@ -56,7 +56,11 @@ class MethodSelecter:
 
 
         if method_name == "OP3D":
-            ...
+            from cellpose_omni import models, core
+            use_GPU = core.use_gpu()
+            self.model = models.CellposeModel(gpu=use_GPU, net_avg=False, **self.config["model"])
+
+            self.parameters = config["parameters"]
 
         if method_name == "StitchCP2D":
             from cellstitch.pipeline import full_stitch
@@ -91,6 +95,10 @@ class MethodSelecter:
         
         if self.method_name == "CP-SAM":
             mask, _, _ = self.model.eval(img_norm[...,None], **self.config)
+            return mask
+        
+        if self.method_name == "OP3D":
+            mask, _, _ = self.model.eval(img_norm, niter=10, **self.parameters)
             return mask
         
         if self.method_name in ["StitchCP2D", "StitchSD2D"]:

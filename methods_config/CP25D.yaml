@@ -1,0 +1,9 @@
+model_name: "cyto2"
+model_parameters:
+  batch_size: 32
+  diameter: 15
+  channels:
+    - 0
+    - 0
+  do_3D: true
+  dP_smooth: 0.5
