@@ -1,7 +1,7 @@
 from csbdeep.utils import normalize
 import numpy as np
 
-from .tools.cellstitch_aux import apply_model, post_process
+from tools.cellstitch_aux import apply_model, post_process
 
 class MethodSelecter:
 
