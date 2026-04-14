@@ -35,7 +35,7 @@ if __name__ == "__main__":
     output_dir = args.output
     method_name = args.method
 
-    verbose = args.versbose
+    verbose = args.verbose
 
     assert method_name in METHODS_AVAILABLE, f"{method_name} is an unknown method\nknown methods are {METHODS_AVAILABLE}"
 
