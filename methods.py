@@ -64,6 +64,7 @@ class MethodSelecter:
 
         if method_name == "StitchCP2D":
             from cellstitch.pipeline import full_stitch
+            self.stitch = full_stitch
             from torch.cuda import is_available
             from cellpose.models import Cellpose
             use_gpu = is_available()
@@ -74,6 +75,7 @@ class MethodSelecter:
 
         if method_name == "StitchSD2D":
             from cellstitch.pipeline import full_stitch
+            self.stitch = full_stitch
             from stardist.models import StarDist2D
             self.model = StarDist2D.from_pretrained("2D_versatile_fluo")
             self.parameters = {}
@@ -113,7 +115,7 @@ class MethodSelecter:
             
             masks = [xy_masks, yz_masks, xz_masks]
             d = self.d
-            mask = full_stitch(masks[d], masks[(d+1)%3], masks[(d+2)%3])
+            mask = self.stitch(masks[d], masks[(d+1)%3], masks[(d+2)%3])
             return post_process(mask)
         
         if self.method_name == "uSeg2.5D":
