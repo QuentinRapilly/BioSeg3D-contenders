@@ -61,7 +61,7 @@ if __name__ == "__main__":
         img = imread(img_f)
 
         with Timer():
-            mask = method.segment()
+            mask = method.segment(img)
         
         imwrite(join(save_dir, basename(img_f)), mask)
 
