@@ -1,0 +1,22 @@
+preprocess_params:
+  voxel_res:
+    - 1.
+    - 1.
+    - 1.
+  do_bg_correction: false
+  factor: 1.0
+
+cellpose_params:
+  cellpose_modelname: "cyto2"
+  model_invert: false
+  ksize: 15
+  hist_norm: true
+  histnorm_clip_limit: 0.01
+  use_edge: false
+
+aggreg_params:
+  combine_cell_probs:
+    cellpose_prob_mask: true
+    threshold_n_levels: 3
+  gradient_descent:
+    gradient_decay: 0.0

@@ -1,0 +1,9 @@
+batch_size: 32
+flow_threshold: 0.4
+cellprob_threshold: 0.0
+normalize:
+  tile_norm_blocksize: 0
+do_3D: true
+flow3D_smooth: 0.5
+z_axis: 0
+channel_axis: 3
