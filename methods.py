@@ -38,6 +38,8 @@ class MethodSelecter:
         if method_name == "uSeg2.5D":
             import segment3D.parameters as uSegment3D_params
             
+            from torch.cuda import is_available
+
             import segment3D.usegment3d as uSegment3D
             import segment3D.file_io as uSegment3D_fio
             import scipy.ndimage as ndimage
@@ -52,7 +54,8 @@ class MethodSelecter:
 
             cellpose_params = uSegment3D_params.get_Cellpose_autotune_params()
             self.cellpose_params = self.config["cellpose_params"] | cellpose_params\
-                | {"histnorm_kernel_size": (512, 512), "diam_range": np.arange(2,50,2)}
+                | {"histnorm_kernel_size": (512, 512), "diam_range": np.arange(2,50,2),
+                   "gpu": is_available()}
 
         
             aggreg_params = uSegment3D_params.get_2D_to_3D_aggregation_params()
