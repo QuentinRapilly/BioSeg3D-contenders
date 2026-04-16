@@ -37,9 +37,13 @@ class MethodSelecter:
 
         if method_name == "uSeg2.5D":
             import segment3D.parameters as uSegment3D_params
+            
             import segment3D.usegment3d as uSegment3D
             import segment3D.file_io as uSegment3D_fio
             import scipy.ndimage as ndimage
+            self.useg = uSegment3D
+            self.usef_fio = uSegment3D_fio
+            self.ndimage = ndimage
 
             self.pad_size = 0
 
@@ -120,23 +124,23 @@ class MethodSelecter:
         
         if self.method_name == "uSeg2.5D":
             pad_size = self.pad_size
-            img = np.pad(img, [[pad_size, pad_size], [pad_size, pad_size], [pad_size, pad_size]], mode='constant')
+            img = np.pad(img_norm, [[pad_size, pad_size], [pad_size, pad_size], [pad_size, pad_size]], mode='constant')
             img[img==0] = np.nanmedian(img[img>0])
-            img = ndimage.median_filter(img, size=3)
+            img = self.ndimage.median_filter(img, size=3)
 
-            img_preprocess = uSegment3D.preprocess_imgs(img, params=self.preprocess_params)
+            img_preprocess = self.useg.preprocess_imgs(img, params=self.preprocess_params)
             img_preprocess = np.squeeze(img_preprocess)[...,None]
 
             if len(img_preprocess.shape) ==3: # 3D volume 
                 img_preprocess = img_preprocess[...,None] # we generate an artificial channel
             
-            _, img_segment_3D_xy_probs, img_segment_2D_xy_flows, _ = uSegment3D.Cellpose2D_model_auto(
+            _, img_segment_3D_xy_probs, img_segment_2D_xy_flows, _ = self.useg.Cellpose2D_model_auto(
                 img_preprocess, view='xy', params=self.cellpose_params, basename=None, savefolder=None)
-            _, img_segment_3D_xz_probs, img_segment_2D_xz_flows, _ = uSegment3D.Cellpose2D_model_auto(
+            _, img_segment_3D_xz_probs, img_segment_2D_xz_flows, _ = self.useg.Cellpose2D_model_auto(
                 img_preprocess, view='xz', params=self.cellpose_params, basename=None, savefolder=None)
-            _, img_segment_3D_yz_probs, img_segment_2D_yz_flows, _ = uSegment3D.Cellpose2D_model_auto(
+            _, img_segment_3D_yz_probs, img_segment_2D_yz_flows, _ = self.useg.Cellpose2D_model_auto(
                 img_preprocess, view='yz', params=self.cellpose_params, basename=None, savefolder=None)
-            segmentation3D, _ = uSegment3D.aggregate_2D_to_3D_segmentation_direct_method(
+            segmentation3D, _ = self.useg.aggregate_2D_to_3D_segmentation_direct_method(
                 probs=[img_segment_3D_xy_probs, img_segment_3D_xz_probs,img_segment_3D_yz_probs],
                 gradients=[img_segment_2D_xy_flows, img_segment_2D_xz_flows, img_segment_2D_yz_flows],
                 params=self.aggreg_params, savefolder=None, basename=None)

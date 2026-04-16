@@ -15,9 +15,6 @@ class Timer:
 
     @classmethod
     def elapsed_time(cls):
-
-        print(cls.nb_call)
-        print(cls.time_in)
         return cls.time_in/cls.nb_call
     
 
