@@ -6,7 +6,7 @@ from glob import glob
 import yaml
 
 from methods import MethodSelecter
-from time_decorator import Timer
+from tools.time_decorator import Timer
 
 METHODS_AVAILABLE = ["SD3D", "CP2.5D", "CP-SAM", "uSeg2.5D", "OP3D", "StitchCP2D", "StitchSD2D"]
 
