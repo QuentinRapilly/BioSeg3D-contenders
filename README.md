@@ -13,13 +13,13 @@ The implemented methods are:
 
 ## Virtual envs
 
-To use this repository, it is essential to have initialized virtual environments containing the packages required for the various methods.
+To use this repository, it is essential to have initialized virtual environments containing the packages required for the different methods.
 
-TODO: donner des détails de comment faire.
+To do so consider following the instructions given in [Packages_installation_guideline.md](Packages_installation_guideline.md).
 
 ## Configuration files
 
-In the "methods_config" folder, there is a configuration file for each method. This is where you should modify the hyperparameters for each method.
+In the "methods_config" folder, there is a configuration file for each method. This is where you should modify the hyperparameters for each method or fill the path to custom trained methods (for SD3D and OP3D).
 
 ## Segmentation
 
