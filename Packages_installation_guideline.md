@@ -52,7 +52,7 @@ git clone https://github.com/imyiningliu/cellstitch.git
 
 The URL of the git being [https://github.com/imyiningliu/cellstitch/](https://github.com/imyiningliu/cellstitch/).
 
-Once the files are dowloaded, you will have two modify some lines:
+Once the files are dowloaded, you will have to modify some lines:
 
 #### Change 1
 
@@ -211,6 +211,14 @@ uv pip install tensorflow[and-cuda]==2.14.0
 
 ```bash
 uv pip install stardist
+```
+
+If errors appear, it might be because you should downgrade `numpy` to a version earlier than 2.0.
+
+You can do it with:
+
+```bash
+uv pip install numpy==1.26.1
 ```
 
 ### Adding Cellstitch
