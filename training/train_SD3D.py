@@ -54,7 +54,7 @@ def augmenter(x, y):
 
 
 
-@hydra.main(version_base=None, config_path="configs", config_name="train")
+@hydra.main(version_base=None, config_path="train_configs", config_name="SD3D")
 def train(cfg : DictConfig):
 
     print(f"Gpu available : {list_physical_devices('GPU')}")
