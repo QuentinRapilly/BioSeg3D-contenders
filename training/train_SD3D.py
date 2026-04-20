@@ -119,7 +119,7 @@ def train(cfg : DictConfig):
         limit_gpu_memory(fraction = 0.8, total_memory = cfg["gpu"]["memory"])
 
 
-    model = StarDist3D(conf, name=cfg["save"]["name"]+f"_{dt.datetime.now().replace(" ","_").split(".")[0]}",
+    model = StarDist3D(conf, name=cfg["save"]["name"]+f"_{dt.datetime.now().replace(' ','_').split('.')[0]}",
                        basedir=cfg["save"]["path"])
 
 
