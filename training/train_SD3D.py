@@ -7,6 +7,7 @@ from tqdm import tqdm
 from tifffile import imread
 from csbdeep.utils import Path, normalize
 from tensorflow.config import list_physical_devices
+import datetime as dt
 
 from stardist import fill_label_holes, random_label_cmap, calculate_extents, gputools_available
 from stardist import Rays_GoldenSpiral
@@ -115,10 +116,11 @@ def train(cfg : DictConfig):
     if use_gpu:
         from csbdeep.utils.tf import limit_gpu_memory
         # adjust as necessary: limit GPU memory to be used by TensorFlow to leave some to OpenCL-based computations
-        limit_gpu_memory(fraction = 0.8, total_memory = 75000)
+        limit_gpu_memory(fraction = 0.8, total_memory = cfg["gpu"]["memory"])
 
 
-    model = StarDist3D(conf, name=cfg["storage_dir"], basedir=cfg["storage_dir"])
+    model = StarDist3D(conf, name=cfg["save"]["name"]+f"_{dt.datetime.now()}",
+                       basedir=cfg["save"]["path"])
 
 
     model.train(X_trn, Y_trn, validation_data=(X_val,Y_val), augmenter=augmenter)
