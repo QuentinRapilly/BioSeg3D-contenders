@@ -123,7 +123,8 @@ def train(cfg : DictConfig):
                        basedir=cfg["save"]["path"])
 
 
-    model.train(X_trn, Y_trn, validation_data=(X_val,Y_val), augmenter=augmenter)
+    model.train(X_trn, Y_trn, validation_data=(X_val,Y_val),
+                epochs= cfg["parameters"]["nb_epochs"], augmenter=augmenter)
 
 
     model.optimize_thresholds(X_val, Y_val)
