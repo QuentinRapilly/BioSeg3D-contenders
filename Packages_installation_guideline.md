@@ -197,6 +197,14 @@ Once all those steps are done, the package should be installed correctly but a d
 
 Go back to method 2 and follow the instruction starting by the one to install `natsort`.
 
+### Training using RAdam
+
+If you consider training Omnipose with optimizer RAdam, you should also install it:
+
+```bash
+uv pip install pytorch-optimizer
+```
+
 ## StarDist 2D/3D + Cellstitch
 
 **This environment can be used to run both SD3D and StitchSD2D.**
