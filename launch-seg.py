@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
         img = imread(img_f)
 
-        with Timer():
+        with Timer("segment"):
             mask = method.segment(img)
         
         imwrite(join(save_dir, basename(img_f)), mask)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         yaml.dump(method_cfg, f_cfg, default_flow_style=False)
 
     with open(join(save_dir, "time.txt"), "a") as f_time:
-        print(f"Mean time per file: {round(Timer.elapsed_time(), 4)}s",file=f_time)
+        print(f"Mean time per file: {round(Timer.elapsed_time("segment"), 4)}s",file=f_time)
 
 
     
