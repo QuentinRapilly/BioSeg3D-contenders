@@ -35,11 +35,7 @@ class Timer:
                 for key in cls.nb_call}
     
 
-    
-
-
 if __name__ == "__main__":
-
 
     with Timer("test1"):
         sleep(1)
