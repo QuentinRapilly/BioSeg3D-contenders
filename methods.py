@@ -17,6 +17,7 @@ class MethodSelecter:
         if method_name == "SD3D":
             from stardist.models import StarDist3D
             from tensorflow.config import list_physical_devices
+            self.parameters = {"n_tiles": config["n_tiles"]}
             #config = {"use_gpu": (len(list_physical_devices("GPU"))>0)}
             self.model = StarDist3D(None,
                                     name=config["model_name"],
@@ -97,7 +98,7 @@ class MethodSelecter:
 
         if self.method_name == "SD3D":  
             #n_channel = 1 if image.ndim == 3 else image.shape[-1]
-            labels, _ = self.model.predict_instances(img_norm)
+            labels, _ = self.model.predict_instances(img_norm, **self.parameters)
             return labels
 
         if self.method_name == "CP2.5D":
