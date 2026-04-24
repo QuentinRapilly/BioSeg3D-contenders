@@ -69,7 +69,7 @@ if __name__ == "__main__":
         yaml.dump(method_cfg, f_cfg, default_flow_style=False)
 
     with open(join(save_dir, "time.txt"), "a") as f_time:
-        print(f"Mean time per file: {round(Timer.elapsed_time("segment"), 4)}s",file=f_time)
+        print(f"Mean time per file: {round(Timer.elapsed_time('segment'), 4)}s",file=f_time)
 
 
     

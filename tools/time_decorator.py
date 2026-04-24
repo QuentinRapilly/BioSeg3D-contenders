@@ -34,6 +34,14 @@ class Timer:
             }
                 for key in cls.nb_call}
     
+    @classmethod
+    def str_summary(cls):
+        dico = Timer.summary()
+        res = ""
+        for k in dico:
+            res += f"Operation {k}:\n  - called: {dico[k]['nb_call']} time(s),\n  - mean time {round(dico[k]['mean_time'],4)}s.\n"
+
+        return res
 
 if __name__ == "__main__":
 
@@ -46,6 +54,6 @@ if __name__ == "__main__":
     with Timer("test2"):
         sleep(1)
 
-    print(Timer.summary())
+    print(Timer.str_summary())
     
 
